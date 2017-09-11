@@ -31,6 +31,7 @@
   16-2. slick fullscreen SPLIT
 17. google maps POSITION
 18. the Wall
+19. LoadMore
 */
 
 
@@ -60,48 +61,8 @@ $(function() {
         pullDrag: false,
         responsiveRefreshRate: 50
     });
-    // 2-2. testimonials carousel
-    $(".testimonials-carousel").owlCarousel({
-        loop: true,
-        autoplay: true,
-        autoplaySpeed: 1000,
-        autoplayTimeout: 5000,
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        items: 1,
-        margin: 0,
-        center: true,
-        dots: false,
-        nav: false,
-        touchDrag: true,
-        mouseDrag: true,
-        pullDrag: true,
-        responsiveRefreshRate: 50
-    });
-    // 2-3. news carousel
-    $("#news-carousel").owlCarousel({
-        loop: true,
-        center: true,
-        items: 3,
-        margin: 0,
-        autoplay: false,
-        autoplaySpeed: 1000,
-        autoplayTimeout: 5000,
-        smartSpeed: 450,
-        nav: true,
-        navText: ["<i class='owl-custom ion-chevron-left'></i>", "<i class='owl-custom ion-chevron-right'></i>"],
-        responsive: {
-            0: {
-                items: 1
-            },
-            768: {
-                items: 2
-            },
-            1170: {
-                items: 3
-            }
-        }
-    });
+   
+    
     // 2-4. home carousel slider
     $("#home-page-img-carousel").owlCarousel({
         loop: true,
@@ -174,16 +135,7 @@ $(function() {
     // 6. parallax
     $(".parallax-window").parallax(10);
 	
-    // 7. facts counter
-    $(".facts-counter-number").appear(function() {
-        var count = $(this);
-        count.countTo({
-            from: 0,
-            to: count.html(),
-            speed: 1200,
-            refreshInterval: 60
-        });
-    });
+    
 	
     // 8. onScroll animations
     $(window).on("scroll", function() {
@@ -223,60 +175,10 @@ $(function() {
         }
         return !1;
     });
-    // 9-2. newsletter form
-    $("form#subscribe").on("submit", function() {
-        $("form#subscribe .subscribe-error").remove();
-        var s = !1;
-        if ($(".subscribe-requiredField").each(function() {
-                if ("" === jQuery.trim($(this).val())) $(this).prev("label").text(), $(this).parent().append('<span class="subscribe-error">Please enter your Email</span>'),
-                    $(this).addClass("inputError"), s = !0;
-                else if ($(this).hasClass("subscribe-email")) {
-                    var r = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-                    r.test(jQuery.trim($(this).val())) || ($(this).prev("label").text(), $(this).parent().append('<span class="subscribe-error">Please enter a valid Email</span>'),
-                        $(this).addClass("inputError"), s = !0);
-                }
-            }), !s) {
-            $("form#subscribe input.submit").fadeOut("normal", function() {
-                $(this).parent().append("");
-            });
-            var r = $(this).serialize();
-            $.post($(this).attr("action"), r, function() {
-                $("form#subscribe").slideUp("fast", function() {
-                    $(this).before('<div class="subscribe-success">Thank you for subscribing.</div>');
-                });
-            });
-        }
-        return !1;
-    });
+   
 	
-    // 10. YTPlayer
-    $("#background-video").YTPlayer({
-        videoId: "r8j-MWq4HZc", // DEMO URL is: https://www.youtube.com/watch?v=r8j-MWq4HZc
-        mute: true,             // options: true, false
-        pauseOnScroll: false,
-        repeat: true,
-        fitToBackground: true,
-        playerVars: {
-            modestbranding: 0,
-            autoplay: 1,
-            controls: 0,
-            showinfo: 0,
-            wmode: "transparent",
-            branding: 0,
-            rel: 0,
-            autohide: 0
-        }
-    });
+    
 	
-    // 11. skills bar
-    $(".show-skillbar").appear(function() {
-        $(".skillbar").skillBars({
-            from: 0,
-            speed: 4000,
-            interval: 100,
-            decimals: 0
-        });
-    });
 	
     // 12. menu active state
     $(".menu-state, .link-underline").on("click", function() {
@@ -516,6 +418,17 @@ $(function() {
 
 });
 
+//19: loadMore
+$(function () {
+    $(".box-hidden").slice(0, 6).show();
+    $("#loadMore").on('click', function (e) {
+        e.preventDefault();
+        $(".box-hidden:hidden").slice(0, 3).slideDown();
+        if ($(".box-hidden:hidden").length == 0) {
+            $("#load").fadeOut('slow');
+			$("#loadMore").hide(); 
+        }
+       
+    });
+});
 
-// 18. the Wall
-// intentionally REMOVED!

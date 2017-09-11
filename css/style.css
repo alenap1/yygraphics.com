@@ -5209,8 +5209,8 @@ filter: alpha(opacity=100);
     display: none!important;
 }
 .project-name h3 {
-	font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+	font-family: 'Josefin Sans', sans-serif;
+    font-size: 26px;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
@@ -5221,7 +5221,7 @@ filter: alpha(opacity=100);
     font-size: 16px;
     font-weight: 700;
     text-align: center;
-    text-transform: uppercase;
+    font-style: italic;
     color: #9e9fa5;
 }
 .project-name {
@@ -5249,4 +5249,14 @@ filter: alpha(opacity=100);
 }
 .section-works .section-title:hover:after, .section-works .section-title:hover:before, .section-works .section-title:after, .section-works .section-title:before {
     background-color: #fff;
+}
+.box-hidden {
+	display: none;
+}
+#loadMore {
+	display: block;
+	margin: 20px auto 0px;
+}
+#loadMore span {
+	color: white;
 }
